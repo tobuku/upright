@@ -7,22 +7,7 @@
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* --- Preloader --- */
-  function killPreloader() {
-    const preloader = document.querySelector('.preloader');
-    if (preloader) preloader.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  // Safety Net 2: kill on window load
-  window.addEventListener('load', function () {
-    setTimeout(killPreloader, 600);
-  });
-
-  // Safety Net 3: fallback timeout
-  setTimeout(killPreloader, 4500);
-
-  /* --- DOM Ready --- */
+/* --- DOM Ready --- */
   document.addEventListener('DOMContentLoaded', function () {
 
     /* --- Mobile Navigation --- */
@@ -217,11 +202,8 @@
           }
         });
 
-        killPreloader();
-
       } catch (e) {
         console.warn('GSAP init failed:', e);
-        killPreloader();
         // Make all reveal elements visible
         document.querySelectorAll('.reveal').forEach(function (el) {
           el.style.opacity = '1';
